@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>ContentEditable Example</title>
+    <style>
+        .content {
+            border: 1px solid #f3f3f3;
+            box-sizing: border-box;
+            width: 100%;
+            min-height: 100px;
+            padding: 10px;
+            outline-style: none;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>ContentEditable Example</h1>
+
+    <h3>Default</h3>
+    <div class="content" contenteditable>
+
+    </div>
+
+    <h3>Limit word length-10</h3>
+    <div id="limit" class="content" contenteditable>
+
+    </div>
+
+    <script>
+        var limitC = getDom('#limit')
+        var ingoreWhich = [8, 37, 38, 39, 40]
+
+
+        limitC.addEventListener('keydown', function (event) {
+            console.log(111, limitC.innerText.length, event.which)
+            if (limitC.innerText.length >= 10 && ingoreWhich.indexOf(event.which) === -1) {
+                event.returnValue = false
+                return event.preventDefault()
+            }
+        })
+
+
+
+        function getDom(id) {
+            return document.querySelector(id)
+        } 
+    </script>
+</body>
+
+</html>
